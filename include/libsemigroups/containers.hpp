@@ -25,8 +25,9 @@
 #include <type_traits>  // for is_default_constructible
 #include <vector>       // for vector, allocator
 
-#include "debug.hpp"     // for LIBSEMIGROUPS_ASSERT
-#include "iterator.hpp"  // for ConstIteratorStateful, ConstItera...
+#include "adapters.hpp"   // for Hash
+#include "debug.hpp"      // for LIBSEMIGROUPS_ASSERT
+#include "iterator.hpp"   // for ConstIteratorStateful, ConstItera...
 
 namespace libsemigroups {
   namespace detail {
