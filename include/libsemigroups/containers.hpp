@@ -25,8 +25,9 @@
 #include <type_traits>  // for is_default_constructible
 #include <vector>       // for vector, allocator
 
-#include "debug.hpp"     // for LIBSEMIGROUPS_ASSERT
-#include "iterator.hpp"  // for ConstIteratorStateful, ConstItera...
+#include "adapters.hpp"   // for Hash
+#include "debug.hpp"      // for LIBSEMIGROUPS_ASSERT
+#include "iterator.hpp"   // for ConstIteratorStateful, ConstItera...
 
 namespace libsemigroups {
   namespace detail {
@@ -660,6 +661,11 @@ namespace libsemigroups {
                && std::equal(cbegin(), cend(), that.cbegin());
       }
 
+      // Not noexcept, since operator== can throw
+      bool operator!=(StaticVector1 const& that) const {
+        return !operator==(that);
+      }
+
       void clear() noexcept {
         _size = 0;
       }
@@ -939,7 +945,7 @@ namespace std {
     operator()(libsemigroups::detail::StaticVector1<T, N> const& sv) const {
       size_t seed = 0;
       for (T const& x : sv) {
-        seed ^= std::hash<T>()(x) + 0x9e3779b97f4a7c16 + (seed << 6)
+        seed ^= libsemigroups::Hash<T>()(x) + 0x9e3779b97f4a7c16 + (seed << 6)
                 + (seed >> 2);
       }
       return seed;
