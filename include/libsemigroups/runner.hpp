@@ -87,7 +87,13 @@ namespace libsemigroups {
     //! to \ref run_until (if any) is not copied.
     //!
     //! \param other the Runner to copy.
-    Runner(Runner const& other) : Runner() {
+    Runner(Runner const& other)
+        : _last_report(other._last_report),
+          _report_time_interval(other._report_time_interval),
+          _run_for(other._run_for),
+          _start_time(other._start_time),
+          _state(),
+          _stopper() {
       _state = other._state.load();
     }
 
@@ -98,6 +104,7 @@ namespace libsemigroups {
     //! an argument to \ref run_until (if any) is not copied.
     //!
     //! \param other the Runner to move from.
+    // TODO(now) update as per copy constructor
     Runner(Runner&& other) : Runner() {
       _state = other._state.load();
     }
@@ -284,6 +291,10 @@ namespace libsemigroups {
     template <typename TIntType>
     void report_every(TIntType t) {
       report_every(std::chrono::nanoseconds(t));
+    }
+
+    std::chrono::nanoseconds report_every() const noexcept {
+      return _report_time_interval;
     }
 
     //! Report why \ref run stopped.
