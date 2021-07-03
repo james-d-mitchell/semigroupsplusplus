@@ -19,6 +19,12 @@ Namely:
 - a preliminary implementation of the `Konieczny`_ :cite:`Konieczny1994aa` and
   `Lallement-McFadden`_ :cite:`Lallement1990aa` algorithm for computing finite
   semigroups which act on sets.
+- a preliminary implementation of the algorithm for solving the word problem
+  for small overlap monoids, and for computing normal forms in such monoids;
+  see `Kambites <https://doi.org/10.1016/j.jalgebra.2008.09.038>`__
+  :cite:`Kambites2009aa`, 
+  `Kambites <https://doi.org/10.1016/j.jalgebra.2008.12.028>`__
+  :cite:`Kambites2009ab`, and Mitchell-Tsalakou :cite:`Mitchell2021aa`. 
 
 .. _Froidure-Pin algorithm: https://www.irif.fr/~jep/PDF/Rio.pdf
 .. _Todd-Coxeter algorithm: https://en.wikipedia.org/wiki/Todd%E2%80%93Coxeter_algorithm
